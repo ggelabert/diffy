@@ -15,7 +15,7 @@ object XmlLifter {
         FieldMap(Map(node.label -> text))
       }
       case _ => {
-        FieldMap(Map(node.label -> node.child.map(subNode => lift(subNode))))
+        FieldMap(Map(node.label ->  (FieldMap(node.attributes.asAttrMap) ++ node.child.map(subNode => lift(subNode)))))
       }
     }
   }

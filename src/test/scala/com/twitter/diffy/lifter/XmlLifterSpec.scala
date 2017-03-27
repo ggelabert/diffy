@@ -4,6 +4,8 @@ import com.twitter.diffy.ParentSpec
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 
+import scala.collection.immutable.{List, Nil}
+
 @RunWith(classOf[JUnitRunner])
 class XmlLifterSpec extends ParentSpec {
   val XML = """<PurchaseDetailRQ xmlns="http://www.hotelbeds.com/schemas/2005/06/messages" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.hotelbeds.com/schemas/2005/06/messages PurchaseDetailRS.xsd" version="EVOLUTION">
@@ -24,12 +26,10 @@ class XmlLifterSpec extends ParentSpec {
                   </PurchaseReference>
               </PurchaseDetailRQ>"""
   describe("XmlLifter"){
-    it("should correctly lift maps when keys are invalid identifier prefixes") {
-      XmlLifter.lift(XmlLifter.decode(XML)) mustBe a [Map[_, _]]
-    }
     it("should correctly lift all the childs of the root element") {
       val res = XmlLifter.lift(XmlLifter.decode(XML));
-      res.get("PurchaseDetailRQ")
+      println(res)
+      res.get("PurchaseDetailRQ") must not be Nil
     }
   }
 }
