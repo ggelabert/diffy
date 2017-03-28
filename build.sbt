@@ -50,6 +50,7 @@ lazy val baseSettings = Seq(
   ),
   scalacOptions in (Compile, console) := compilerOptions,
   libraryDependencies ++= Seq(
+    "net.liftweb" % "lift-json_2.11" % "3.0.1",
     "com.twitter" %% "finagle-http" % "6.28.0",
     "com.twitter" %% "finagle-thriftmux" % "6.28.0",
     "com.twitter" %% "scrooge-generator" % "4.0.0",

@@ -105,7 +105,7 @@ class HttpLifter(excludeHttpHeadersComparison: Boolean) {
         case (Some(mediaType), _)
           if mediaType.is(MediaType.APPLICATION_XML_UTF_8) || mediaType.toString.startsWith("text/xml") => {
           val xmlContentTry = Try {
-            XmlLifter.lift(XmlLifter.decode(r.getContent.toString(Charsets.Utf8)))
+            JsonLifter.lift(XmlLifter.decode(r.getContent.toString(Charsets.Utf8)))
           }
 
           Future.const(xmlContentTry map { xmlContent =>
